@@ -63,6 +63,11 @@ EOT
 
 help() {
 	echo "Usage: $0 boot | login | install | provision | help"
+	echo "boot: Start the VM and SSH into it."
+	echo "login: SSH into the VM."
+	echo "install: Download ISO and create image."
+	echo "provision: Install Rust and Rustyvisor."
+	echo "help: This cruft."
 	exit -1
 }
 

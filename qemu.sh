@@ -6,6 +6,7 @@ DOWNLOAD_URL="http://archive.ubuntu.com/ubuntu/dists/yakkety/main/installer-amd6
 DOWNLOAD_ISO="mini.iso"
 BASE_IMAGE="ubuntu.qcow2"
 CPU="host"
+NUM_CPUS="4"
 # Needs at least 256M to boot.
 MEMORY="512M"
 # Needs 1G to install, more than 2 to be useful.
@@ -26,13 +27,13 @@ install() {
 	fi
 	qemu-img create -f qcow2 $BASE_IMAGE $BASE_DISK_SIZE
 
-	qemu-system-x86_64 $KVM -cdrom $DOWNLOAD_ISO -hda $BASE_IMAGE -boot d -m $MEMORY -cpu $CPU $REBOOT
+	qemu-system-x86_64 $KVM -cdrom $DOWNLOAD_ISO -hda $BASE_IMAGE -boot d -m $MEMORY -cpu $CPU $REBOOT -smp $NUM_CPUS
 	echo "Manually install ubuntu."
 	echo "We recommend you name your user ubunu and install openssh."
 }
 
 boot() {
-	qemu-system-x86_64 $KVM -hda $BASE_IMAGE -redir tcp:$LOCAL_SSH_PORT::22 -m $MEMORY  -cpu $CPU $REBOOT &
+	qemu-system-x86_64 $KVM -hda $BASE_IMAGE -redir tcp:$LOCAL_SSH_PORT::22 -m $MEMORY  -cpu $CPU $REBOOT -smp $NUM_CPUS &
 	echo "Waiting for ubuntu to boot."
 	sleep 10
 	ssh -p $LOCAL_SSH_PORT $USER@localhost

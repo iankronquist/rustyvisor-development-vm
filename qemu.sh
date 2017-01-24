@@ -28,7 +28,7 @@ install() {
 
 	qemu-system-x86_64 $KVM -cdrom $DOWNLOAD_ISO -hda $BASE_IMAGE -boot d -m $MEMORY -cpu $CPU $REBOOT
 	echo "Manually install ubuntu."
-	echo "We recommend you name your user ubunu and install openssh."
+	echo "We recommend you name your user ubuntu and install openssh."
 }
 
 boot() {

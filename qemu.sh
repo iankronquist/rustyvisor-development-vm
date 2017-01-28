@@ -12,7 +12,7 @@ MEMORY="512M"
 # Needs 1G to install, more than 2 to be useful.
 BASE_DISK_SIZE="5G"
 LOCAL_SSH_PORT="5022"
-GRAPHICS=""
+GRAPHICS="-nographic"
 REBOOT="-no-reboot"
 CLONE_URL="http://github.com/iankronquist/rustyvisor"
 
@@ -33,7 +33,7 @@ install() {
 }
 
 boot() {
-	qemu-system-x86_64 $KVM -hda $BASE_IMAGE -redir tcp:$LOCAL_SSH_PORT::22 -m $MEMORY  -cpu $CPU $REBOOT -smp $NUM_CPUS &
+	qemu-system-x86_64 $KVM -hda $BASE_IMAGE  -redir tcp:$LOCAL_SSH_PORT::22 -m $MEMORY  -cpu $CPU $REBOOT -smp $NUM_CPUS $GRAPHICS &
 	echo "Waiting for ubuntu to boot."
 	sleep 10
 	ssh -p $LOCAL_SSH_PORT $USER@localhost

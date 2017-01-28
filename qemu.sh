@@ -69,11 +69,15 @@ EOT
 }
 
 help() {
-	echo "Usage: $0 boot | login | install | provision | help"
+	echo "Usage: $0 boot | login | install | provision | debug | help"
 	echo "boot: Start the VM and SSH into it."
 	echo "login: SSH into the VM."
 	echo "install: Download ISO and create image."
 	echo "provision: Install Rust and Rustyvisor."
+	echo "debug: Launch QEMU in debug mode."
+	echo "       Wait for a minute before connecting GDB."
+	echo "       To connect GDB run the following command at the GDB prompt:"
+	echo "       target remote localhost:1234"
 	echo "help: This cruft."
 	exit -1
 }

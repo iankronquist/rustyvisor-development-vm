@@ -36,7 +36,6 @@ install() {
 boot() {
 	qemu-system-x86_64 $KVM -hda $BASE_IMAGE  -redir tcp:$LOCAL_SSH_PORT::22 -m $MEMORY  -cpu $CPU $REBOOT -smp $NUM_CPUS $GRAPHICS -serial file:$SERIAL_FILE &
 	echo "Waiting for ubuntu to boot."
-	sleep 1
 	ssh -p $LOCAL_SSH_PORT $USER@localhost
 }
 

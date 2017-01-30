@@ -54,11 +54,14 @@ provision() {
 ssh -p $LOCAL_SSH_PORT $USER@localhost 'bash -s' <<EOT
 	
 	#sudo apt-get install curl
-	#sudo apt-get install linux-headers-$$(uname -r) gcc make git
+	#sudo apt-get install linux-headers-\$(uname -r) gcc make git vim
 	curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly -y;
 	git clone $CLONE_URL
 	source ~/.cargo/env
 	echo "source ~/.cargo/env" >> ~/.bashrc
+	echo "alias v=vim" >> ~/.bashrc
+	echo "alias gs='git status'" >> ~/.bashrc
+	echo "alias gap='git add -p'" >> ~/.bashrc
 	rustup install nightly
 	rustup default nightly
 	rustup component add rust-src

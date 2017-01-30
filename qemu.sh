@@ -58,10 +58,19 @@ ssh -p $LOCAL_SSH_PORT $USER@localhost 'bash -s' <<EOT
 	curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly -y;
 	git clone $CLONE_URL
 	source ~/.cargo/env
+
 	echo "source ~/.cargo/env" >> ~/.bashrc
 	echo "alias v=vim" >> ~/.bashrc
 	echo "alias gs='git status'" >> ~/.bashrc
 	echo "alias gap='git add -p'" >> ~/.bashrc
+
+	echo "set spell" >> ~/.vimrc
+	echo "syntax on" >> ~/.vimrc
+	echo "set number" >> ~/.vimrc
+	echo "au BufRead,BufNewFile *.rs setfiletype rust" >> ~/.vimrc
+	echo "autocmd BufRead,BufNewFile *.rs setlocal expandtab" >> ~/.vimrc
+	mkdir -p ~/.vim/syntax
+
 	rustup install nightly
 	rustup default nightly
 	rustup component add rust-src
@@ -69,6 +78,8 @@ ssh -p $LOCAL_SSH_PORT $USER@localhost 'bash -s' <<EOT
 	cargo install rustfmt
 	cargo install clippy
 EOT
+
+	scp -P $LOCAL_SSH_PORT $HOME/.vim/syntax/rust.vim $USER@localhost:~/.vim
 }
 
 help() {

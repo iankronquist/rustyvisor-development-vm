@@ -68,7 +68,7 @@ ssh -p $LOCAL_SSH_PORT $USER@localhost 'bash -s' <<EOT
 	echo "syntax on" >> ~/.vimrc
 	echo "set number" >> ~/.vimrc
 	echo "au BufRead,BufNewFile *.rs setfiletype rust" >> ~/.vimrc
-	echo "autocmd BufRead,BufNewFile *.rs setlocal expandtab" >> ~/.vimrc
+	echo "autocmd BufRead,BufNewFile *.rs setlocal expandtab syntax=rust" >> ~/.vimrc
 	mkdir -p ~/.vim/syntax
 
 	rustup install nightly

@@ -35,14 +35,10 @@ install() {
 
 boot() {
 	qemu-system-x86_64 $KVM -hda $BASE_IMAGE  -redir tcp:$LOCAL_SSH_PORT::22 -m $MEMORY  -cpu $CPU $REBOOT -smp $NUM_CPUS $GRAPHICS -serial file:$SERIAL_FILE &
-	echo "Waiting for ubuntu to boot."
-	ssh -p $LOCAL_SSH_PORT $USER@localhost
 }
 
 debug() {
 	qemu-system-x86_64 -s $KVM -hda $BASE_IMAGE  -redir tcp:$LOCAL_SSH_PORT::22 -m $MEMORY  -cpu $CPU $REBOOT -smp $NUM_CPUS $GRAPHICS -serial file:$SERIAL_FILE &
-	echo "Waiting for ubuntu to boot."
-	ssh -p $LOCAL_SSH_PORT $USER@localhost
 }
 
 login() {
@@ -83,7 +79,7 @@ EOT
 
 help() {
 	echo "Usage: $0 boot | login | install | provision | debug | help"
-	echo "boot: Start the VM and SSH into it."
+	echo "boot: Start the VM."
 	echo "login: SSH into the VM."
 	echo "install: Download ISO and create image."
 	echo "provision: Install Rust and Rustyvisor."

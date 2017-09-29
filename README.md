@@ -1,9 +1,11 @@
 # Ubuntu VM image
 
 ```
-Usage: ./qemu.sh boot | login | install | provision | debug | help
+Usage: ./qemu.sh <command>
+Commands:
 boot: Start the VM.
 login: SSH into the VM.
+copy: Copies files from the host source to the guest destination
 install: Download ISO and create image.
 provision: Install Rust and Rustyvisor.
 debug: Launch QEMU in debug mode.

@@ -86,11 +86,12 @@ copy() {
 }
 
 help() {
-	echo "Usage: $0 boot | login | install | provision | debug | help"
+	echo "Usage: $0 <command>"
+	echo "Commands:"
 	echo "boot: Start the VM."
 	echo "login: SSH into the VM."
+	echo "copy: Copies files from the host source to the guest destination"
 	echo "install: Download ISO and create image."
-	echo "copy: Copies from the host source to the guest destination"
 	echo "provision: Install Rust and Rustyvisor."
 	echo "debug: Launch QEMU in debug mode."
 	echo "       Wait for a minute before connecting GDB."

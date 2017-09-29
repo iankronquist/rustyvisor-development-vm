@@ -82,7 +82,10 @@ EOT
 }
 
 copy() {
-	scp -i $KEY_FILE -P $LOCAL_SSH_PORT -r $1 $USER@localhost:$2
+	length=$(($#-1))
+	lead=${@:1:$length}
+	last=${@:$length+1}
+	scp -i $KEY_FILE -P $LOCAL_SSH_PORT -r $lead $USER@localhost:$last
 }
 
 help() {

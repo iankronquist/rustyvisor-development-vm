@@ -1,2 +1,5 @@
 *.iso
 serial.txt
+sshkey
+sshkey.pub
+*.qcow2
